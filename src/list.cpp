@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : list.cpp
 // Author      : Makowiec
-// Version     :
+// Version     : 0.1
 // Copyright   : IC
 // Description : Program do tworzenia listy plików, Ansi-style
 //============================================================================
