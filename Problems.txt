@@ -1,0 +1,10 @@
+Problemy z bibliotekami
+
+Rozwi¹zanie
+Projek/Properties
+C/C++ Builder
+Settings
+All configurations
+MinGW C++ Linker
+Miscellaneous
+Linker flags: -static-libstdc++ -static-libgcc
