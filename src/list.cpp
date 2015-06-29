@@ -8,12 +8,13 @@
 
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 
 int main()
 {
-	unsigned long rozmiar;
+	double rozmiar;
 
 	fstream plik("plik.txt"); //strumien na pliku
 	plik.seekg(0, ios::end); //przesuniêcie wskaznika na koniec
@@ -29,13 +30,13 @@ int main()
 	cout << rozmiar <<" B" <<std::endl;
 	else
 		if (rozmiar < 1048576)
-		cout << rozmiar / 1024 <<" kB" <<std::endl;
+		cout << setprecision(3) << rozmiar / 1024 << " kB" <<std::endl;
 		else
 			if (rozmiar < 1073741824)
-			cout << rozmiar / 1048576 <<" MB" <<std::endl;
+			cout << setprecision(3) << rozmiar / 1048576 <<" MB" <<std::endl;
 			else
 				if (rozmiar < 1099511627776)
-				cout << rozmiar / 1073741824 <<" GB" <<std::endl;
+				cout << setprecision(3) << rozmiar / 1073741824 <<" GB" <<std::endl;
 				else
 				cout << "Error" <<std::endl;
 
