@@ -18,4 +18,4 @@ Lokalizacja:
 https://github.com/makowiec/list.git
 
 Wprowadzone zmiany:
-- sprawdzanie rozmiaru pliku;
+- sprawdzanie rozmiaru pliku (wartoœæ zmiennoprzecinkowa);
