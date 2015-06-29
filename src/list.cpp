@@ -14,19 +14,18 @@ using namespace std;
 
 int main()
 {
-	double rozmiar;
-	double wynik;
-	string jednostka;
+	double rozmiar; //rozmiar pliku w bajtach
+	double wynik; // rozmiar pliku w "najwiêkszych jednostkach"
+	string jednostka; //do zapisu jednostki
 
 	fstream plik("plik.txt"); //strumien na pliku
 	plik.seekg(0, ios::end); //przesuniêcie wskaznika na koniec
 	//cout << plik.tellg(); // pozycja wskaŸnika na koñcu pliku
 
 	rozmiar = plik.tellg();
-
 	plik.close(); //zamykanie pliku
 
-// sprawdzanie rozmiaru pliku i dodanie odpowiedniej jednostki
+	// sprawdzanie rozmiaru pliku i dodanie odpowiedniej jednostki
 
 	if (rozmiar < 1024)
 	{
@@ -65,7 +64,29 @@ int main()
 				jednostka = " Error";
 	}	}	}	}
 
-	cout << setprecision(3) << wynik << jednostka << endl;
+	fstream file;
+	// otwarcie pliku
+	file.open( "wynik.txt", ios::app | ios::in | ios::out );
+	//weryfikacja poprawnoœci otwarcia
+	if( file.good() == true )
+	{
+	cout << "Uzyskano dostep do pliku!" << endl;
 
+	//zapisanie strumienia do pliku
+	file << setprecision(3) << wynik << jednostka << endl;
+
+	// komentarz sprawdzajacy
+	cout << "Dane zapisane do pliku" << endl;
+
+	//obs³uba b³êdu - brak dostêpu do pliku
+	}
+	else
+	// komentarz sprawdzajacy
+	cout << "Dostep do pliku zostal zabroniony!" << endl;
+
+	// zamykanie pliku
+	file.close();
+	// komentarz sprawdzajacy
+	cout << "Plik zostal zamkniety" << endl;
 	return 0;
 }
