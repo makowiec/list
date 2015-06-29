@@ -17,6 +17,21 @@ int main()
 	double rozmiar; //rozmiar pliku w bajtach
 	double wynik; // rozmiar pliku w "najwiêkszych jednostkach"
 	string jednostka; //do zapisu jednostki
+	string kod; //kod - potrzebny do œcie¿ki
+	string rok; //rok - potrzebny do œcie¿ki
+	string miesiac; //miesi¹c - potrzebny do œcie¿ki
+	string sciezka; //scia¿ka do plików
+
+	cout << "Podaj KOD: ";
+	cin >> kod;
+	cout << "Podaj rok: ";
+	cin >> rok;
+	cout << "Podaj miesiac: ";
+	cin >> miesiac;
+
+	sciezka = kod + '\\' + rok + '\\' + miesiac + '\\';
+
+	cout << sciezka << endl;
 
 	fstream plik("plik.txt"); //strumien na pliku
 	plik.seekg(0, ios::end); //przesuniêcie wskaznika na koniec
