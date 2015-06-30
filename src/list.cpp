@@ -12,6 +12,74 @@
 
 using namespace std;
 
+double rozmiar_pliku (double rozmiar) // okreœlenie rozmiaru pliku
+{
+	double wynik_fun;
+
+	if (rozmiar < 1024)
+		{
+		wynik_fun = rozmiar;
+		}
+		else
+		{
+			if (rozmiar < 1048576)
+			{
+			wynik_fun = rozmiar / 1024;
+			}
+			else
+			{
+				if (rozmiar < 1073741824)
+				{
+				wynik_fun = rozmiar / 1048576;
+				}
+				else
+				{
+					if (rozmiar < 1099511627776)
+					{
+					wynik_fun = rozmiar / 1073741824;
+					}
+					else
+					{
+					wynik_fun = 0;
+					}	}	}	}
+
+	return wynik_fun;
+}
+
+string jednostka_pliku (double rozmiar) //okreœlenie jednostki pliku
+{
+	string jednostka_fun;
+
+	if (rozmiar < 1024)
+		{
+		jednostka_fun = " B";
+		}
+		else
+		{
+			if (rozmiar < 1048576)
+			{
+			jednostka_fun = " kB";
+			}
+			else
+			{
+				if (rozmiar < 1073741824)
+				{
+				jednostka_fun = " MB";
+				}
+				else
+				{
+					if (rozmiar < 1099511627776)
+					{
+					jednostka_fun = " GB";
+					}
+					else
+					{
+					jednostka_fun = " Error";
+		}	}	}	}
+
+	return jednostka_fun;
+}
+
 int main()
 {
 	double rozmiar; //rozmiar pliku w bajtach
@@ -22,16 +90,16 @@ int main()
 	string miesiac; //miesi¹c - potrzebny do œcie¿ki
 	string sciezka; //scia¿ka do plików
 
-	cout << "Podaj KOD: ";
-	cin >> kod;
-	cout << "Podaj rok: ";
-	cin >> rok;
-	cout << "Podaj miesiac: ";
-	cin >> miesiac;
+	//cout << "Podaj KOD: ";
+	//cin >> kod;
+	//cout << "Podaj rok: ";
+	//cin >> rok;
+	//cout << "Podaj miesiac: ";
+	//cin >> miesiac;
 
-	sciezka = kod + '\\' + rok + '\\' + miesiac + '\\';
+	//sciezka = kod + '\\' + rok + '\\' + miesiac + '\\';
 
-	cout << sciezka << endl;
+	//cout << sciezka << endl;
 
 	fstream plik("plik.txt"); //strumien na pliku
 	plik.seekg(0, ios::end); //przesuniêcie wskaznika na koniec
@@ -40,44 +108,8 @@ int main()
 	rozmiar = plik.tellg();
 	plik.close(); //zamykanie pliku
 
-	// sprawdzanie rozmiaru pliku i dodanie odpowiedniej jednostki
-
-	if (rozmiar < 1024)
-	{
-	//cout << rozmiar <<" B" <<std::endl;
-	wynik = rozmiar;
-	jednostka = " B";
-	}
-	else
-	{
-		if (rozmiar < 1048576)
-		{
-				//cout << setprecision(3) << rozmiar / 1024 << " kB" <<std::endl;
-		wynik = rozmiar / 1024;
-		jednostka = " kB";
-		}
-		else
-		{
-			if (rozmiar < 1073741824)
-			{
-			//cout << setprecision(3) << rozmiar / 1048576 <<" MB" <<std::endl;
-			wynik = rozmiar / 1048576;
-			jednostka = " MB";
-			}
-			else
-			{
-				if (rozmiar < 1099511627776)
-				{
-				//cout << setprecision(3) << rozmiar / 1073741824 <<" GB" <<std::endl;
-				wynik = rozmiar / 1073741824;
-				jednostka = " GB";
-				}
-				else
-				{
-				//cout << "Error" <<std::endl;
-				wynik = 0;
-				jednostka = " Error";
-	}	}	}	}
+	wynik = rozmiar_pliku (rozmiar);
+	jednostka = jednostka_pliku (rozmiar);
 
 	fstream file;
 	// otwarcie pliku
@@ -85,23 +117,24 @@ int main()
 	//weryfikacja poprawnoœci otwarcia
 	if( file.good() == true )
 	{
+// komentarz sprawdzajacy
 	cout << "Uzyskano dostep do pliku!" << endl;
 
 	//zapisanie strumienia do pliku
 	file << setprecision(3) << wynik << jednostka << endl;
 
-	// komentarz sprawdzajacy
+// komentarz sprawdzajacy
 	cout << "Dane zapisane do pliku" << endl;
 
 	//obs³uba b³êdu - brak dostêpu do pliku
 	}
 	else
-	// komentarz sprawdzajacy
+// komentarz sprawdzajacy
 	cout << "Dostep do pliku zostal zabroniony!" << endl;
 
 	// zamykanie pliku
 	file.close();
-	// komentarz sprawdzajacy
+// komentarz sprawdzajacy
 	cout << "Plik zostal zamkniety" << endl;
 	return 0;
 }
