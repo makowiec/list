@@ -4,6 +4,7 @@
 // Version     : 0.1
 // Copyright   : IC
 // Description : Program do tworzenia listy plików, Ansi-style
+//				 Pliki mniejsze ni¿ 1TB
 //============================================================================
 
 #include <iostream>
@@ -21,30 +22,30 @@ double rozmiar_pliku (double rozmiar) // okreœlenie rozmiaru pliku
 
 	if (rozmiar < 1024)
 		{
-		wynik_fun = rozmiar;
+			wynik_fun = rozmiar;
 		}
 		else
 		{
 			if (rozmiar < 1048576)
 			{
-			wynik_fun = rozmiar / 1024;
+				wynik_fun = rozmiar / 1024;
 			}
 			else
 			{
 				if (rozmiar < 1073741824)
 				{
-				wynik_fun = rozmiar / 1048576;
+					wynik_fun = rozmiar / 1048576;
 				}
 				else
 				{
 					if (rozmiar < 1099511627776)
 					{
-					wynik_fun = rozmiar / 1073741824;
+						wynik_fun = rozmiar / 1073741824;
 					}
 					else
 					{
-					wynik_fun = 0;
-					}	}	}	}
+						wynik_fun = 0;
+		}	}	}	}
 
 	return wynik_fun;
 }
@@ -55,29 +56,29 @@ string jednostka_pliku (double rozmiar) //okreœlenie jednostki pliku
 
 	if (rozmiar < 1024)
 		{
-		jednostka_fun = " B ; ";
+			jednostka_fun = " B ; ";
 		}
 		else
 		{
 			if (rozmiar < 1048576)
 			{
-			jednostka_fun = " kB ; ";
+				jednostka_fun = " kB ; ";
 			}
 			else
 			{
 				if (rozmiar < 1073741824)
 				{
-				jednostka_fun = " MB ; ";
+					jednostka_fun = " MB ; ";
 				}
 				else
 				{
 					if (rozmiar < 1099511627776)
 					{
-					jednostka_fun = " GB ; ";
+						jednostka_fun = " GB ; ";
 					}
 					else
 					{
-					jednostka_fun = " Error ; ";
+						jednostka_fun = " Error ; ";
 		}	}	}	}
 
 	return jednostka_fun;
