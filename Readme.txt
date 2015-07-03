@@ -9,6 +9,10 @@ MinGW C++ Linker
 Miscellaneous
 Linker flags: -static-libstdc++ -static-libgcc
 
+Przydajne linki
+--------------------------------------------------
+http://www.sockfd.net/content/recursive-file-listing-choosing-folder-c-windows
+
 ToDo:
 ----------
 
