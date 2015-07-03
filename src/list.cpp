@@ -92,40 +92,40 @@ int main()
 	string rok; //rok - potrzebny do œcie¿ki
 	string miesiac; //miesi¹c - potrzebny do œcie¿ki
 	string sciezka; //scia¿ka do plików
+/*
+	Pieœñ przysz³oœci ;)
 
-	//cout << "Podaj KOD: ";
-	//cin >> kod;
-	//cout << "Podaj rok: ";
-	//cin >> rok;
-	//cout << "Podaj miesiac: ";
-	//cin >> miesiac;
-
-	//sciezka = kod + '\\' + rok + '\\' + miesiac + '\\';
-
-	//cout << sciezka << endl;
-
+	cout << "Podaj KOD: ";
+	cin >> kod;
+	cout << "Podaj rok: ";
+	cin >> rok;
+	cout << "Podaj miesiac: ";
+	cin >> miesiac;
+	sciezka = kod + '\\' + rok + '\\' + miesiac + '\\';
+	cout << sciezka << endl;
+*/
 	fstream file;
 	// otwarcie pliku
 	file.open( "wynik.txt", ios::app | ios::in | ios::out );
 	//weryfikacja poprawnoœci otwarcia
 	if( file.good() == true )
 	{
-// komentarz sprawdzajacy
-cout << "Uzyskano dostep do pliku!" << endl;
 
-	listDir("C:\\baza", file);
+// komentarz sprawdzajacy
+		cout << "Uzyskano dostep do pliku!" << endl;
+		listDir("C:\\baza", file); //wywo³anie g³ownej funkcji
     }
 
 	//obs³uba b³êdu - brak dostêpu do pliku
 	else
 	{
 // komentarz sprawdzajacy
-cout << "Dostep do pliku zostal zabroniony!" << endl;
+	cout << "Dostep do pliku zostal zabroniony!" << endl;
 	}
 	// zamykanie pliku
 	file.close();
 // komentarz sprawdzajacy
-cout << "Plik zostal zamkniety" << endl;
+	cout << "Plik zostal zamkniety" << endl;
 
 	return 0;
 }
@@ -154,23 +154,22 @@ void listDir(const char * dirn, fstream &file)
         char filePath[1024];
         sprintf(filePath, "%s%s%s", dirn, "\\", name);
 
-        //file << filePath << endl;
-
         fstream plik(filePath); //strumien na pliku
-        	plik.seekg(0, ios::end); //przesuniêcie wskaznika na koniec
-        	//cout << plik.tellg(); // pozycja wskaŸnika na koñcu pliku
+        plik.seekg(0, ios::end); //przesuniêcie wskaznika na koniec
+        rozmiar = plik.tellg(); // zapisnie rozmiaru pliku do zmiennej
+        plik.close(); //zamykanie pliku
 
-        	rozmiar = plik.tellg();
-        	plik.close(); //zamykanie pliku
+        wynik = rozmiar_pliku (rozmiar); // wywo³anie funkcji obliczaj¹cej rozmiar w "najwiekszych jednostkach"
+        jednostka = jednostka_pliku (rozmiar); // wywo³anie funkcj okreœlaj¹cej jedostkê
 
-        	wynik = rozmiar_pliku (rozmiar);
-        	jednostka = jednostka_pliku (rozmiar);
-
+        // rozmiar folderu to -1 poni¿szy if usuwa foldery z listy
+        if (wynik>=0)
+        {
         	file << setprecision(3) << wynik << jednostka << filePath << endl;
+        }
 
-
-        // komentarz sprawdzajacy
-        	cout << "Dane zapisane do pliku" << endl;
+// komentarz sprawdzajacy
+        cout << "Dane zapisane do pliku" << endl;
 
         if (f.dwFileAttributes&FILE_ATTRIBUTE_DIRECTORY)
         {
