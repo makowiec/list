@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
+#include <ctime>
 
 using namespace std;
 
@@ -84,52 +85,7 @@ string jednostka_pliku (double rozmiar) //okreœlenie jednostki pliku
 	return jednostka_fun;
 }
 
-void listDir(const char * dirn, fstream &file);
-
-int main()
-{
-
-	string kod; //kod - potrzebny do œcie¿ki
-	string rok; //rok - potrzebny do œcie¿ki
-	string miesiac; //miesi¹c - potrzebny do œcie¿ki
-	string sciezka; //scia¿ka do plików
-/*
-	Pieœñ przysz³oœci ;)
-
-	cout << "Podaj KOD: ";
-	cin >> kod;
-	cout << "Podaj rok: ";
-	cin >> rok;
-	cout << "Podaj miesiac: ";
-	cin >> miesiac;
-	sciezka = kod + '\\' + rok + '\\' + miesiac + '\\';
-	cout << sciezka << endl;
-*/
-	fstream file;
-	// otwarcie pliku
-	file.open( "wynik.txt", ios::app | ios::in | ios::out );
-	//weryfikacja poprawnoœci otwarcia
-	if( file.good() == true )
-	{
-
-// komentarz sprawdzajacy
-		cout << "Uzyskano dostep do pliku!" << endl;
-		listDir("C:\\baza", file); //wywo³anie g³ownej funkcji
-    }
-
-	//obs³uba b³êdu - brak dostêpu do pliku
-	else
-	{
-// komentarz sprawdzajacy
-	cout << "Dostep do pliku zostal zabroniony!" << endl;
-	}
-	// zamykanie pliku
-	file.close();
-// komentarz sprawdzajacy
-	cout << "Plik zostal zamkniety" << endl;
-
-	return 0;
-}
+//void listDir(const char * dirn, fstream &file);
 
 void listDir(const char * dirn, fstream &file)
 {
@@ -180,3 +136,72 @@ void listDir(const char * dirn, fstream &file)
     } while (FindNextFile(h, &f));
     FindClose(h);
 }
+
+string dtnow ()
+{
+
+		time_t rawtime;
+	    tm* timeinfo;
+	    char buffer [80];
+
+	    time(&rawtime);
+	    timeinfo = localtime(&rawtime);
+
+	    strftime(buffer,80,"%d/%m/%Y - %H:%M:%S",timeinfo);
+
+	    return buffer;
+}
+
+int main()
+{
+
+	/* TEST
+	string kod; //kod - potrzebny do œcie¿ki
+	string rok; //rok - potrzebny do œcie¿ki
+	string miesiac; //miesi¹c - potrzebny do œcie¿ki
+	string sciezka; //scia¿ka do plików
+
+	Pieœñ przysz³oœci ;)
+
+	cout << "Podaj KOD: ";
+	cin >> kod;
+	cout << "Podaj rok: ";
+	cin >> rok;
+	cout << "Podaj miesiac: ";
+	cin >> miesiac;
+	sciezka = kod + '\\' + rok + '\\' + miesiac + '\\';
+	cout << sciezka << endl;
+*/
+
+// komentarz sprawdzajacy
+	cout << dtnow() <<endl;
+
+	fstream file;
+	// otwarcie pliku
+	file.open( "wynik.txt", ios::app | ios::in | ios::out );
+	//weryfikacja poprawnoœci otwarcia
+	if( file.good() == true )
+	{
+
+// komentarz sprawdzajacy
+		cout << "Uzyskano dostep do pliku!" << endl;
+		listDir("C:\\baza", file); //wywo³anie g³ownej funkcji
+    }
+
+	//obs³uba b³êdu - brak dostêpu do pliku
+	else
+	{
+// komentarz sprawdzajacy
+	cout << "Dostep do pliku zostal zabroniony!" << endl;
+	}
+	// zamykanie pliku
+	file.close();
+// komentarz sprawdzajacy
+	cout << "Plik zostal zamkniety" << endl;
+
+	return 0;
+}
+
+
+
+
