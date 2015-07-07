@@ -174,6 +174,12 @@ int main()
 // komentarz sprawdzajacy
 	cout << dtnow() <<endl;
 
+	// usuwanie pliku z poprzedni¹ list¹
+	if( remove( "wynik.txt" ) == 0 )
+
+		cout << "Plik zosta³ usuniêty" << endl;
+
+
 	fstream file;
 	// otwarcie pliku
 	file.open( "wynik.txt", ios::app | ios::in | ios::out );
