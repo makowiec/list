@@ -153,13 +153,11 @@ string dtnow ()
 int main()
 {
 
-	/* TEST
+
 	string kod; //kod - potrzebny do œcie¿ki
 	string rok; //rok - potrzebny do œcie¿ki
 	string miesiac; //miesi¹c - potrzebny do œcie¿ki
 	string sciezka; //scia¿ka do plików
-
-	Pieœñ przysz³oœci ;)
 
 	cout << "Podaj KOD: ";
 	cin >> kod;
@@ -169,7 +167,7 @@ int main()
 	cin >> miesiac;
 	sciezka = kod + '\\' + rok + '\\' + miesiac + '\\';
 	cout << sciezka << endl;
-*/
+
 
 // komentarz sprawdzajacy
 	cout << dtnow() <<endl;
@@ -186,6 +184,9 @@ int main()
 	//weryfikacja poprawnoœci otwarcia
 	if( file.good() == true )
 	{
+
+		// Linia informacyjna dla stworzonego pliku
+		file << "Lista stworzona dla: " << kod << " za rok: " << rok << " miesiac: "<< miesiac <<". Data wykonania: " << dtnow() << endl;
 
 // komentarz sprawdzajacy
 		cout << "Uzyskano dostep do pliku!" << endl;
