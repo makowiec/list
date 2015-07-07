@@ -85,8 +85,6 @@ string jednostka_pliku (double rozmiar) //okreœlenie jednostki pliku
 	return jednostka_fun;
 }
 
-//void listDir(const char * dirn, fstream &file);
-
 void listDir(const char * dirn, fstream &file)
 {
 
