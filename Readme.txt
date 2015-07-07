@@ -22,4 +22,5 @@ Lokalizacja:
 https://github.com/makowiec/list.git
 
 Wprowadzone zmiany:
+- tworzenie listy plików w okreœlonej lokalizacji;
 - sprawdzanie rozmiaru pliku (wartoœæ zmiennoprzecinkowa);
